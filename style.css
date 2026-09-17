@@ -1,0 +1,326 @@
+:root {
+    --background: #f2f5fb;
+    --surface: #ffffff;
+    --text: #172033;
+    --muted: #687189;
+    --primary: #5b4fe8;
+    --primary-dark: #4437cc;
+    --primary-soft: #efedff;
+    --border: #dce1ec;
+    --error: #c3293d;
+    --error-soft: #fff0f2;
+    --success: #15835d;
+    --shadow: 0 24px 60px rgba(45, 54, 91, 0.13);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 10% 10%, rgba(91, 79, 232, 0.14), transparent 30rem),
+        radial-gradient(circle at 90% 90%, rgba(48, 190, 145, 0.12), transparent 27rem),
+        var(--background);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.5;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.page-shell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 48px 20px;
+}
+
+.registration-card {
+    width: min(100%, 760px);
+    padding: clamp(26px, 5vw, 50px);
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+}
+
+.card-header {
+    margin-bottom: 34px;
+    text-align: center;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin: 0 0 7px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    margin-bottom: 9px;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    line-height: 1.15;
+}
+
+.card-header p,
+.summary-intro {
+    margin-bottom: 0;
+    color: var(--muted);
+}
+
+fieldset {
+    margin: 0 0 30px;
+    padding: 0;
+    border: 0;
+}
+
+legend {
+    width: 100%;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 1.05rem;
+    font-weight: 750;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 20px;
+}
+
+.form-group {
+    min-width: 0;
+}
+
+.form-group-full {
+    grid-column: 1 / -1;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 0.91rem;
+    font-weight: 700;
+}
+
+label span,
+.required-note span {
+    color: var(--error);
+}
+
+input {
+    width: 100%;
+    min-height: 48px;
+    padding: 11px 14px;
+    color: var(--text);
+    background: #fbfcff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+input:hover {
+    border-color: #b9c0d1;
+}
+
+input:focus {
+    background: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(91, 79, 232, 0.12);
+}
+
+input[aria-invalid="true"] {
+    border-color: var(--error);
+    background: #fffafb;
+}
+
+input[aria-invalid="true"]:focus {
+    box-shadow: 0 0 0 4px rgba(195, 41, 61, 0.11);
+}
+
+.field-error {
+    min-height: 18px;
+    margin: 5px 0 0;
+    color: var(--error);
+    font-size: 0.78rem;
+}
+
+.message {
+    margin-bottom: 24px;
+    padding: 13px 15px;
+    border-radius: 10px;
+    font-size: 0.91rem;
+    font-weight: 650;
+}
+
+.message-error {
+    color: #9e1c30;
+    background: var(--error-soft);
+    border: 1px solid #f3c1c9;
+}
+
+.required-note {
+    margin: -12px 0 20px;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.primary-button,
+.secondary-button {
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 22px;
+    border-radius: 11px;
+    cursor: pointer;
+    font-weight: 800;
+    transition: transform 150ms ease, background 150ms ease, box-shadow 150ms ease;
+}
+
+.primary-button {
+    color: #fff;
+    background: var(--primary);
+    border: 0;
+    box-shadow: 0 9px 20px rgba(91, 79, 232, 0.24);
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.primary-button:active,
+.secondary-button:active {
+    transform: translateY(0);
+}
+
+.primary-button:focus-visible,
+.secondary-button:focus-visible {
+    outline: 3px solid rgba(91, 79, 232, 0.3);
+    outline-offset: 3px;
+}
+
+.summary {
+    text-align: center;
+}
+
+.success-icon {
+    display: grid;
+    place-items: center;
+    width: 66px;
+    height: 66px;
+    margin: 0 auto 20px;
+    color: #fff;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 10px 25px rgba(21, 131, 93, 0.22);
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.summary h2 {
+    margin-bottom: 8px;
+    font-size: clamp(1.55rem, 4vw, 2rem);
+}
+
+.summary-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.summary-item {
+    min-width: 0;
+    padding: 15px;
+    background: #f7f8fc;
+    border: 1px solid #e7eaf2;
+    border-radius: 11px;
+}
+
+.summary-item-wide {
+    grid-column: 1 / -1;
+}
+
+.summary-item dt {
+    margin-bottom: 4px;
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.summary-item dd {
+    overflow-wrap: anywhere;
+    margin: 0;
+    font-weight: 650;
+}
+
+.secondary-button {
+    color: var(--primary);
+    background: var(--primary-soft);
+    border: 1px solid #d8d4ff;
+}
+
+.secondary-button:hover {
+    background: #e4e0ff;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 620px) {
+    .page-shell {
+        align-items: flex-start;
+        padding: 18px 12px;
+    }
+
+    .registration-card {
+        padding: 25px 18px;
+        border-radius: 18px;
+    }
+
+    .card-header {
+        margin-bottom: 27px;
+    }
+
+    .form-grid,
+    .summary-list {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group-full,
+    .summary-item-wide {
+        grid-column: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}

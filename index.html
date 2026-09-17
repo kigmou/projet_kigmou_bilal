@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulaire d'inscription">
+    <title>Créer un compte</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="page-shell">
+        <section class="registration-card" aria-labelledby="page-title">
+            <div id="form-view">
+                <div class="card-header">
+                    <span class="eyebrow">Bienvenue</span>
+                    <h1 id="page-title">Créer votre compte</h1>
+                    <p>Renseignez vos informations pour finaliser votre inscription.</p>
+                </div>
+
+                <div id="form-message" class="message message-error" role="alert" aria-live="assertive" hidden></div>
+
+                <form id="registration-form" novalidate>
+                    <fieldset>
+                        <legend>Identifiants</legend>
+                        <div class="form-grid">
+                            <div class="form-group form-group-full">
+                                <label for="login">Login <span aria-hidden="true">*</span></label>
+                                <input type="text" id="login" name="login" autocomplete="username" required>
+                                <p class="field-error" id="login-error"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Mot de passe <span aria-hidden="true">*</span></label>
+                                <input type="password" id="password" name="password" autocomplete="new-password" required>
+                                <p class="field-error" id="password-error"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password-confirmation">Confirmation du mot de passe <span aria-hidden="true">*</span></label>
+                                <input type="password" id="password-confirmation" name="passwordConfirmation" autocomplete="new-password" required>
+                                <p class="field-error" id="password-confirmation-error"></p>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Informations personnelles</legend>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="last-name">Nom <span aria-hidden="true">*</span></label>
+                                <input type="text" id="last-name" name="lastName" autocomplete="family-name" required>
+                                <p class="field-error" id="last-name-error"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="first-name">Prénom <span aria-hidden="true">*</span></label>
+                                <input type="text" id="first-name" name="firstName" autocomplete="given-name" required>
+                                <p class="field-error" id="first-name-error"></p>
+                            </div>
+
+                            <div class="form-group form-group-full">
+                                <label for="address">Adresse <span aria-hidden="true">*</span></label>
+                                <input type="text" id="address" name="address" autocomplete="street-address" required>
+                                <p class="field-error" id="address-error"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email <span aria-hidden="true">*</span></label>
+                                <input type="email" id="email" name="email" autocomplete="email" inputmode="email" required>
+                                <p class="field-error" id="email-error"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Téléphone <span aria-hidden="true">*</span></label>
+                                <input type="text" id="phone" name="phone" autocomplete="tel" inputmode="tel" required>
+                                <p class="field-error" id="phone-error"></p>
+                            </div>
+
+                            <div class="form-group form-group-full">
+                                <label for="birth-date">Date de naissance <span aria-hidden="true">*</span></label>
+                                <input type="date" id="birth-date" name="birthDate" autocomplete="bday" required>
+                                <p class="field-error" id="birth-date-error"></p>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <p class="required-note"><span aria-hidden="true">*</span> Tous les champs sont obligatoires.</p>
+                    <button type="submit" class="primary-button">S’inscrire</button>
+                </form>
+            </div>
+
+            <section id="summary-view" class="summary" aria-labelledby="summary-title" hidden>
+                <div class="success-icon" aria-hidden="true">✓</div>
+                <p class="eyebrow">Inscription réussie</p>
+                <h2 id="summary-title" tabindex="-1">Bienvenue, <span id="summary-first-name"></span> !</h2>
+                <p class="summary-intro">Vos informations ont bien été enregistrées.</p>
+
+                <dl id="summary-list" class="summary-list"></dl>
+
+                <button type="button" id="edit-button" class="secondary-button">Modifier mes informations</button>
+            </section>
+        </section>
+    </main>
+</body>
+</html>
