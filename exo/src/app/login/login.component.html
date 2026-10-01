@@ -1,0 +1,84 @@
+<main class="login-page">
+  <h1>LOGIN</h1>
+
+  <form #loginForm="ngForm" (ngSubmit)="submit()">
+    <label for="nom">Nom</label>
+    <input id="nom" name="nom" type="text" [(ngModel)]="login.nom" required placeholder="NOM" />
+
+    <label for="prenom">Prénom</label>
+    <input
+      id="prenom"
+      name="prenom"
+      type="text"
+      [(ngModel)]="login.prenom"
+      required
+      placeholder="PRÉNOM"
+    />
+
+    <label for="email">Email</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      [(ngModel)]="login.email"
+      required
+      placeholder="EMAIL"
+    />
+
+    <label for="password">Mot de passe</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      [(ngModel)]="login.password"
+      required
+      placeholder="MOT DE PASSE"
+    />
+
+    <label for="confirm-password">Confirmation</label>
+    <input
+      id="confirm-password"
+      name="confirmpassword"
+      type="password"
+      [(ngModel)]="login.confirmpassword"
+      #confirmPassword="ngModel"
+      required
+      placeholder="CONFIRMATION"
+      [attr.aria-invalid]="confirmPassword.touched && !passwordsMatch"
+      aria-describedby="password-error"
+    />
+
+    @if (confirmPassword.touched && !passwordsMatch) {
+      <p id="password-error" class="error-message" role="alert">
+        Les mots de passe ne correspondent pas.
+      </p>
+    }
+
+    <button type="submit" [disabled]="loginForm.invalid || !passwordsMatch">Se connecter</button>
+  </form>
+
+  @if (submittedData; as data) {
+    <section class="submitted-data" aria-live="polite">
+      <h2>Informations validées</h2>
+
+      <dl>
+        <div>
+          <dt>Nom</dt>
+          <dd>{{ data.nom }}</dd>
+        </div>
+        <div>
+          <dt>Prénom</dt>
+          <dd>{{ data.prenom }}</dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd>{{ data.email }}</dd>
+        </div>
+        <div>
+          <dt>Mot de passe</dt>
+          <dd aria-label="Mot de passe masqué">••••••••</dd>
+        </div>
+      </dl>
+    </section>
+  }
+</main>

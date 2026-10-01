@@ -1,0 +1,205 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(255, 0, 170, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px), #12001f;
+  background-size: 40px 40px;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+}
+
+.login-page {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+form {
+  box-sizing: border-box;
+  width: min(420px, 100%);
+  margin: 40px auto 0;
+  padding: 35px;
+  border: 4px solid #00ffff;
+  background: #1b0630;
+  box-shadow:
+    8px 8px 0 #ff00aa,
+    0 0 20px #00ffff,
+    inset 0 0 20px rgba(0, 255, 255, 0.08);
+}
+
+.submitted-data {
+  box-sizing: border-box;
+  width: min(420px, 100%);
+  margin: 36px auto 0;
+  padding: 28px 35px;
+  border: 4px solid #ffff00;
+  background: #1b0630;
+  box-shadow:
+    8px 8px 0 #00ffff,
+    0 0 20px rgba(255, 255, 0, 0.7);
+}
+
+.submitted-data h2 {
+  margin: 0 0 20px;
+  color: #00ff66;
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.submitted-data dl {
+  margin: 0;
+}
+
+.submitted-data dl div {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px dashed #765c82;
+}
+
+.submitted-data dl div:last-child {
+  border-bottom: 0;
+}
+
+.submitted-data dt {
+  color: #00ffff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.submitted-data dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #fff;
+}
+
+h1 {
+  margin: 0;
+  color: #ffff00;
+  text-align: center;
+  text-shadow:
+    3px 3px 0 #ff00aa,
+    0 0 10px #ffff00;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+label {
+  display: block;
+  margin: 20px 0 8px;
+  color: #00ffff;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 0 0 6px #00ffff;
+  text-transform: uppercase;
+}
+
+input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 3px solid #ff00aa;
+  outline: none;
+  background: #08000f;
+  color: #00ff66;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  transition: 0.15s;
+}
+
+input::placeholder {
+  color: #765c82;
+}
+
+input:focus {
+  border-color: #ffff00;
+  box-shadow:
+    0 0 8px #ffff00,
+    inset 0 0 8px rgba(255, 255, 0, 0.15);
+}
+
+input[aria-invalid='true'] {
+  border-color: #ff3b3b;
+  box-shadow: 0 0 8px rgba(255, 59, 59, 0.8);
+}
+
+.error-message {
+  margin: 10px 0 0;
+  color: #ff7070;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+button {
+  width: 100%;
+  margin-top: 30px;
+  padding: 14px;
+  border: 4px solid #ffff00;
+  background: #ff00aa;
+  box-shadow:
+    5px 5px 0 #00ffff,
+    0 0 15px rgba(255, 0, 170, 0.5);
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: 0.1s;
+}
+
+button:hover:not(:disabled) {
+  background: #00ffff;
+  box-shadow:
+    5px 5px 0 #ffff00,
+    0 0 20px #00ffff;
+  color: #12001f;
+}
+
+button:active:not(:disabled) {
+  transform: translate(4px, 4px);
+  box-shadow: 1px 1px 0 #ffff00;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+:host::after {
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    rgba(255, 255, 255, 0.025) 4px
+  );
+  content: '';
+  pointer-events: none;
+}
+
+@media (max-width: 520px) {
+  .login-page {
+    padding: 24px 14px;
+  }
+
+  form {
+    padding: 24px 20px;
+  }
+
+  .submitted-data {
+    padding: 24px 20px;
+  }
+
+  .submitted-data dl div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
