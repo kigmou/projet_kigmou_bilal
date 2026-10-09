@@ -1,1 +1,23 @@
+# TP02 — Déclaration d’une pollution
+
+L’application Angular demandée se trouve dans le dossier `front`.
+
+## Lancer le projet
+
+```bash
+cd front
+npm install
+npm start
+```
+
+Puis ouvrir `http://localhost:4200`.
+
+## Fonctionnalités
+
+- formulaire Angular Reactive Forms ;
+- validation des champs requis, de la date, des coordonnées et de l’URL facultative ;
+- composants séparés pour le formulaire et le récapitulatif ;
+- transmission des données au récapitulatif avec `@Input()` ;
+- affichage sans rechargement ni navigation ;
+- interface responsive et accessible.
 ttt

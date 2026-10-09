@@ -1,0 +1,204 @@
+<section class="form-card" aria-labelledby="form-title">
+  <div class="form-heading">
+    <div>
+      <p class="step-label">Nouveau signalement</p>
+      <h2 id="form-title">Décrivez votre observation</h2>
+    </div>
+    <span class="required-legend"><span aria-hidden="true">*</span> Champs requis</span>
+  </div>
+
+  @if (submitted && pollutionForm.invalid) {
+    <div class="form-alert" role="alert">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7.8v5.4M12 16.5h.01" />
+      </svg>
+      Vérifiez les champs signalés avant de continuer.
+    </div>
+  }
+
+  <form [formGroup]="pollutionForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="field full-width">
+      <label for="title">Titre de la pollution <span aria-hidden="true">*</span></label>
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        placeholder="Ex. Dépôt de déchets près de la rivière"
+        autocomplete="off"
+        [attr.aria-invalid]="isInvalid('title')"
+        [attr.aria-describedby]="isInvalid('title') ? 'title-error' : null"
+      >
+      @if (isInvalid('title')) {
+        <p id="title-error" class="field-error">Le titre est requis.</p>
+      }
+    </div>
+
+    <div class="field full-width">
+      <label for="type">Type de pollution <span aria-hidden="true">*</span></label>
+      <div class="select-wrapper">
+        <select
+          id="type"
+          formControlName="type"
+          [attr.aria-invalid]="isInvalid('type')"
+          [attr.aria-describedby]="isInvalid('type') ? 'type-error' : null"
+        >
+          <option value="" disabled>Sélectionnez un type</option>
+          @for (type of pollutionTypes; track type) {
+            <option [value]="type">{{ type }}</option>
+          }
+        </select>
+      </div>
+      @if (isInvalid('type')) {
+        <p id="type-error" class="field-error">Sélectionnez un type de pollution.</p>
+      }
+    </div>
+
+    <div class="field full-width">
+      <label for="description">Description <span aria-hidden="true">*</span></label>
+      <textarea
+        id="description"
+        formControlName="description"
+        rows="4"
+        placeholder="Décrivez ce que vous avez observé et l’étendue de la pollution…"
+        [attr.aria-invalid]="isInvalid('description')"
+        [attr.aria-describedby]="isInvalid('description') ? 'description-error' : 'description-help'"
+      ></textarea>
+      <div class="field-meta">
+        @if (isInvalid('description')) {
+          <p id="description-error" class="field-error">La description est requise.</p>
+        } @else {
+          <p id="description-help" class="field-help">Ajoutez tout détail utile à l’intervention.</p>
+        }
+        <span>{{ pollutionForm.controls.description.value?.length ?? 0 }} caractères</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="observation-date">Date de l’observation <span aria-hidden="true">*</span></label>
+      <input
+        id="observation-date"
+        type="date"
+        formControlName="observationDate"
+        [max]="today"
+        [attr.aria-invalid]="isInvalid('observationDate')"
+        [attr.aria-describedby]="isInvalid('observationDate') ? 'date-error' : null"
+      >
+      @if (isInvalid('observationDate')) {
+        <p id="date-error" class="field-error">
+          @if (hasError('observationDate', 'futureDate')) {
+            La date ne peut pas être dans le futur.
+          } @else if (hasError('observationDate', 'invalidDate')) {
+            Saisissez une date valide.
+          } @else {
+            La date d’observation est requise.
+          }
+        </p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="location">Lieu <span aria-hidden="true">*</span></label>
+      <input
+        id="location"
+        type="text"
+        formControlName="location"
+        placeholder="Ville, rue ou lieu-dit"
+        autocomplete="street-address"
+        [attr.aria-invalid]="isInvalid('location')"
+        [attr.aria-describedby]="isInvalid('location') ? 'location-error' : null"
+      >
+      @if (isInvalid('location')) {
+        <p id="location-error" class="field-error">Le lieu est requis.</p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="latitude">Latitude <span aria-hidden="true">*</span></label>
+      <div class="input-with-unit">
+        <input
+          id="latitude"
+          type="number"
+          formControlName="latitude"
+          placeholder="48.8566"
+          inputmode="decimal"
+          step="any"
+          min="-90"
+          max="90"
+          [attr.aria-invalid]="isInvalid('latitude')"
+          [attr.aria-describedby]="isInvalid('latitude') ? 'latitude-error' : null"
+        >
+        <span aria-hidden="true">°</span>
+      </div>
+      @if (isInvalid('latitude')) {
+        <p id="latitude-error" class="field-error">
+          @if (hasError('latitude', 'min') || hasError('latitude', 'max')) {
+            La latitude doit être comprise entre -90 et 90.
+          } @else {
+            Saisissez une latitude valide.
+          }
+        </p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="longitude">Longitude <span aria-hidden="true">*</span></label>
+      <div class="input-with-unit">
+        <input
+          id="longitude"
+          type="number"
+          formControlName="longitude"
+          placeholder="2.3522"
+          inputmode="decimal"
+          step="any"
+          min="-180"
+          max="180"
+          [attr.aria-invalid]="isInvalid('longitude')"
+          [attr.aria-describedby]="isInvalid('longitude') ? 'longitude-error' : null"
+        >
+        <span aria-hidden="true">°</span>
+      </div>
+      @if (isInvalid('longitude')) {
+        <p id="longitude-error" class="field-error">
+          @if (hasError('longitude', 'min') || hasError('longitude', 'max')) {
+            La longitude doit être comprise entre -180 et 180.
+          } @else {
+            Saisissez une longitude valide.
+          }
+        </p>
+      }
+    </div>
+
+    <div class="field full-width">
+      <label for="photo-url">Photo <span class="optional">Optionnel</span></label>
+      <div class="input-with-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <circle cx="8.5" cy="10" r="1.5" />
+          <path d="m4 17 4.6-4.3 3.1 2.8 2.8-2.4L20 18" />
+        </svg>
+        <input
+          id="photo-url"
+          type="url"
+          formControlName="photoUrl"
+          placeholder="https://exemple.fr/photo.jpg"
+          autocomplete="url"
+          [attr.aria-invalid]="isInvalid('photoUrl')"
+          [attr.aria-describedby]="isInvalid('photoUrl') ? 'photo-error' : 'photo-help'"
+        >
+      </div>
+      @if (isInvalid('photoUrl')) {
+        <p id="photo-error" class="field-error">Saisissez une adresse commençant par http:// ou https://.</p>
+      } @else {
+        <p id="photo-help" class="field-help">Ajoutez le lien public vers une photo de la zone observée.</p>
+      }
+    </div>
+
+    <button type="submit" class="submit-button">
+      <span>Déclarer la pollution</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </svg>
+    </button>
+  </form>
+</section>

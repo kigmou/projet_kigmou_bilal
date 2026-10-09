@@ -1,0 +1,354 @@
+.recap-card {
+  overflow: hidden;
+  max-width: 1040px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(13, 73, 59, 0.1);
+  border-radius: 26px;
+  box-shadow: 0 26px 70px rgba(34, 67, 54, 0.12);
+}
+
+.success-banner {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  padding: clamp(28px, 5vw, 50px);
+  color: var(--surface);
+  background:
+    radial-gradient(circle at 92% 10%, rgba(255, 255, 255, 0.11), transparent 18rem),
+    var(--forest);
+}
+
+.success-icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  color: var(--forest);
+  background: var(--sage);
+  border-radius: 50%;
+}
+
+.success-icon svg {
+  width: 34px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.success-banner .eyebrow {
+  margin: 0 0 7px;
+  color: #b9ddc1;
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.success-banner h1 {
+  margin: 0 0 8px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.success-banner p:last-child {
+  margin: 0;
+  color: #d5e7dc;
+  font-size: 0.9rem;
+}
+
+.recap-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.75fr);
+  gap: 36px;
+  padding: clamp(28px, 5vw, 50px);
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.section-heading p {
+  margin: 0 0 6px;
+  color: var(--moss-dark);
+  font-size: 0.67rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.3rem, 3vw, 1.65rem);
+  line-height: 1.2;
+}
+
+.type-badge {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  color: var(--forest);
+  background: var(--sage);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+  margin: 0;
+}
+
+dl > div {
+  min-width: 0;
+  padding: 14px 15px;
+  background: #f7f9f5;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+}
+
+dl > .wide {
+  grid-column: 1 / -1;
+}
+
+.description-item {
+  border-left: 3px solid var(--moss);
+}
+
+dt {
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+dd {
+  overflow-wrap: anywhere;
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.86rem;
+  font-weight: 680;
+  line-height: 1.55;
+}
+
+.photo-url {
+  color: var(--moss-dark);
+  font-size: 0.76rem;
+}
+
+.visual-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+figure {
+  overflow: hidden;
+  margin: 0;
+  background: #edf2eb;
+  border-radius: 15px;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+
+figcaption {
+  padding: 10px 13px;
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+
+.location-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 230px;
+  padding: 25px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(74, 142, 89, 0.13), transparent 9rem),
+    #f0f5ee;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+}
+
+.location-card svg {
+  width: 42px;
+  margin-bottom: 12px;
+  fill: none;
+  stroke: var(--forest);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.location-card span {
+  color: var(--moss-dark);
+  font-size: 0.65rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.location-card strong {
+  margin: 6px 0 3px;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.location-card small {
+  color: var(--muted);
+}
+
+.location-card p {
+  margin: 13px 0 0;
+  color: var(--error);
+  font-size: 0.68rem;
+}
+
+.next-step {
+  display: flex;
+  gap: 13px;
+  padding: 15px;
+  color: var(--surface);
+  background: var(--ink);
+  border-radius: 14px;
+}
+
+.next-step > span {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: var(--ink);
+  background: var(--sand);
+  border-radius: 50%;
+  font-size: 0.67rem;
+  font-weight: 900;
+}
+
+.next-step strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.76rem;
+}
+
+.next-step p {
+  margin: 0;
+  color: #c9d2cd;
+  font-size: 0.67rem;
+  line-height: 1.45;
+}
+
+.recap-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px clamp(28px, 5vw, 50px);
+  background: #f6f8f4;
+  border-top: 1px solid var(--line);
+}
+
+.recap-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 43px;
+  padding: 0 15px;
+  color: var(--forest);
+  background: var(--surface);
+  border: 1px solid #b9c9bc;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.recap-actions button:hover {
+  background: var(--sage);
+}
+
+.recap-actions button:focus-visible {
+  outline: 3px solid rgba(74, 142, 89, 0.25);
+  outline-offset: 2px;
+}
+
+.recap-actions svg {
+  width: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.recap-actions p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+@media (max-width: 760px) {
+  .success-banner {
+    align-items: flex-start;
+  }
+
+  .success-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .recap-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recap-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 520px) {
+  .recap-card {
+    border-radius: 18px;
+  }
+
+  .success-banner {
+    flex-direction: column;
+  }
+
+  .section-heading {
+    flex-direction: column;
+  }
+
+  dl {
+    grid-template-columns: 1fr;
+  }
+
+  dl > .wide {
+    grid-column: auto;
+  }
+}
