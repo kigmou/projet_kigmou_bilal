@@ -1,0 +1,6 @@
+{
+  "pollutions": [
+    { "id": 1, "title": "Déchets plastiques au bord du canal", "type": "Plastique", "description": "Plusieurs sacs et bouteilles abandonnés.", "observationDate": "2026-10-20", "location": "Canal Saint-Martin", "latitude": 48.8722, "longitude": 2.3656, "photoUrl": "" },
+    { "id": 2, "title": "Odeur chimique persistante", "type": "Chimique", "description": "Une odeur forte près de la zone industrielle.", "observationDate": "2026-10-22", "location": "Rue des Forges", "latitude": 48.861, "longitude": 2.3469, "photoUrl": "" }
+  ]
+}
