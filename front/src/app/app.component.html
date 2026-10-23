@@ -1,0 +1,59 @@
+<header class="site-header">
+  <a class="brand" href="#main-content" aria-label="ÉcoSignal — aller au contenu">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32" role="img">
+        <path d="M25.8 5.6C17.1 5.8 8.2 9.3 7.1 18.8c-.5 4.5 2.6 7.3 6.3 7.4 6.7.1 10.9-6.7 12.4-20.6Z" />
+        <path d="M6 27c3.3-6.5 7.7-10.6 14.6-14.4" />
+      </svg>
+    </span>
+    <span>ÉcoSignal</span>
+  </a>
+  <span class="header-badge"><span aria-hidden="true"></span> Portail citoyen</span>
+</header>
+
+<main id="main-content">
+  @if (declaration === null) {
+    <section class="form-layout" aria-labelledby="page-title">
+      <div class="intro-panel">
+        <div class="intro-copy">
+          <p class="eyebrow">Agir près de chez vous</p>
+          <h1 id="page-title">Signaler une pollution, c’est déjà agir.</h1>
+          <p class="intro-text">
+            Votre observation nous aide à protéger les espaces naturels et à orienter les équipes compétentes.
+          </p>
+        </div>
+
+        <div class="impact-card" aria-label="Étapes du signalement">
+          <div class="impact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 21s7-5.2 7-12A7 7 0 1 0 5 9c0 6.8 7 12 7 12Z" />
+              <circle cx="12" cy="9" r="2.3" />
+            </svg>
+          </div>
+          <div>
+            <strong>Une déclaration en 2 minutes</strong>
+            <span>Décrivez, localisez, puis vérifiez votre signalement.</span>
+          </div>
+        </div>
+
+        <div class="decorative-line" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <app-pollution-form (declared)="showRecap($event)" />
+    </section>
+  } @else {
+    <section class="recap-layout" aria-labelledby="recap-title">
+      <app-pollution-recap
+        [declaration]="declaration"
+        (edit)="editDeclaration()"
+      />
+    </section>
+  }
+</main>
+
+<footer>
+  <span>© 2026 ÉcoSignal</span>
+  <span>Une initiative locale pour un environnement préservé.</span>
+</footer>

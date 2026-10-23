@@ -1,0 +1,93 @@
+<article class="recap-card">
+  <div class="success-banner">
+    <div class="success-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="m6.5 12.5 3.4 3.4L17.8 8" /></svg>
+    </div>
+    <div>
+      <p class="eyebrow">Déclaration enregistrée</p>
+      <h1 id="recap-title">Merci pour votre signalement.</h1>
+      <p>Vérifiez ci-dessous les informations que vous venez de transmettre.</p>
+    </div>
+  </div>
+
+  <div class="recap-grid">
+    <section class="details" aria-labelledby="details-title">
+      <div class="section-heading">
+        <div>
+          <p>Récapitulatif</p>
+          <h2 id="details-title">{{ declaration.title }}</h2>
+        </div>
+        <span class="type-badge">{{ declaration.type }}</span>
+      </div>
+
+      <dl>
+        <div class="wide description-item">
+          <dt>Description</dt>
+          <dd>{{ declaration.description }}</dd>
+        </div>
+        <div>
+          <dt>Date d’observation</dt>
+          <dd>{{ declaration.observationDate | date:'d MMMM y':'':'fr-FR' }}</dd>
+        </div>
+        <div>
+          <dt>Lieu</dt>
+          <dd>{{ declaration.location }}</dd>
+        </div>
+        <div>
+          <dt>Latitude</dt>
+          <dd>{{ declaration.latitude | number:'1.2-6':'fr-FR' }}°</dd>
+        </div>
+        <div>
+          <dt>Longitude</dt>
+          <dd>{{ declaration.longitude | number:'1.2-6':'fr-FR' }}°</dd>
+        </div>
+        <div class="wide">
+          <dt>URL de la photo</dt>
+          <dd class="photo-url">{{ declaration.photoUrl || 'Aucune photo fournie' }}</dd>
+        </div>
+      </dl>
+    </section>
+
+    <aside class="visual-summary" aria-label="Aperçu du signalement">
+      @if (declaration.photoUrl && !imageFailed) {
+        <figure>
+          <img
+            [src]="declaration.photoUrl"
+            [alt]="'Photo du signalement : ' + declaration.title"
+            (error)="hideBrokenImage()"
+          >
+          <figcaption>Photo transmise avec le signalement</figcaption>
+        </figure>
+      } @else {
+        <div class="location-card">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21s7-5.2 7-12A7 7 0 1 0 5 9c0 6.8 7 12 7 12Z" />
+            <circle cx="12" cy="9" r="2.3" />
+          </svg>
+          <span>Zone signalée</span>
+          <strong>{{ declaration.location }}</strong>
+          <small>{{ declaration.latitude }}, {{ declaration.longitude }}</small>
+          @if (declaration.photoUrl && imageFailed) {
+            <p>La photo fournie n’a pas pu être chargée.</p>
+          }
+        </div>
+      }
+
+      <div class="next-step">
+        <span aria-hidden="true">01</span>
+        <div>
+          <strong>Signalement reçu</strong>
+          <p>Les informations sont prêtes à être transmises au futur service backend.</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="recap-actions">
+    <button type="button" (click)="edit.emit()">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.7 6.3 3 3M4 20l3.7-.8L19 7.9a2.1 2.1 0 0 0-3-3L4.8 16.2 4 20Z" /></svg>
+      Faire une autre déclaration
+    </button>
+    <p>Le formulaire reste disponible sur cette page, sans rechargement.</p>
+  </div>
+</article>
