@@ -3,6 +3,17 @@
   min-height: 100vh;
 }
 
+.list-layout, .detail-panel { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
+.filters { display: flex; gap: .75rem; margin: 1rem 0; }
+.filters input, .filters select { padding: .8rem 1rem; border: 1px solid #ccd8d2; border-radius: 10px; background: white; }
+.filters input { flex: 1; }
+.pollution-list { display: grid; gap: .7rem; }
+.pollution-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem; background: white; border: 1px solid #e0e9e4; border-radius: 12px; }
+.row-main { display: grid; gap: .3rem; text-align: left; background: none; border: 0; cursor: pointer; color: inherit; }
+.row-main span { color: #62736b; font-size: .9rem; }
+.delete { border: 0; background: #fff0ee; color: #a43c32; border-radius: 8px; padding: .6rem .8rem; cursor: pointer; }
+.detail-panel > button { margin-bottom: 1rem; }
+
 .site-header {
   display: flex;
   align-items: center;

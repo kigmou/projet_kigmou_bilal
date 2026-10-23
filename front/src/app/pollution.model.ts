@@ -10,6 +10,7 @@ export const POLLUTION_TYPES = [
 export type PollutionType = (typeof POLLUTION_TYPES)[number];
 
 export interface PollutionDeclaration {
+  id?: number;
   title: string;
   type: PollutionType;
   description: string;
