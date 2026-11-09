@@ -12,6 +12,15 @@
 </header>
 
 <main id="main-content">
+  <section class="user-bar" aria-labelledby="user-title">
+    <div><p class="eyebrow">Espace citoyen</p><h2 id="user-title">Créer un profil</h2></div>
+    <form (ngSubmit)="registerUser()" #userForm="ngForm">
+      <input name="userName" [(ngModel)]="userName" required placeholder="Votre nom" aria-label="Votre nom">
+      <input name="userEmail" [(ngModel)]="userEmail" required type="email" placeholder="Votre e-mail" aria-label="Votre e-mail">
+      <button type="submit" [disabled]="userForm.invalid">S’inscrire</button>
+    </form>
+    @if (userMessage) { <p role="status">{{ userMessage }}</p> }
+  </section>
   <section class="list-layout" aria-labelledby="list-title">
     <div class="section-heading"><div><p class="eyebrow">Suivi citoyen</p><h1 id="list-title">Pollutions signalées</h1></div><span class="type-badge">{{ filtered.length }} résultat(s)</span></div>
     <div class="filters"><input type="search" placeholder="Rechercher..." [(ngModel)]="search" aria-label="Rechercher une pollution"><select [(ngModel)]="typeFilter" aria-label="Filtrer par type"><option value="">Tous les types</option>@for (type of pollutionTypes; track type) { <option [value]="type">{{ type }}</option> }</select></div>

@@ -6,6 +6,7 @@ import { PollutionFormComponent } from './pollution-form/pollution-form.componen
 import { PollutionRecapComponent } from './pollution-recap/pollution-recap.component';
 import { PollutionDeclaration } from './pollution.model';
 import { PollutionService } from './pollution.service';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { PollutionService } from './pollution.service';
 })
 export class AppComponent implements OnInit {
   private readonly service = inject(PollutionService);
+  private readonly userService = inject(UserService);
   declaration: PollutionDeclaration | null = null;
   pollutions: PollutionDeclaration[] = [];
   selected: PollutionDeclaration | null = null;
@@ -23,6 +25,9 @@ export class AppComponent implements OnInit {
   typeFilter = '';
   message = '';
   readonly pollutionTypes = ['Plastique', 'Chimique', 'Dépôt sauvage', 'Eau', 'Air', 'Autre'];
+  userName = '';
+  userEmail = '';
+  userMessage = '';
 
   ngOnInit(): void { this.load(); }
   load(): void { this.service.getAll().subscribe({ next: data => this.pollutions = data, error: () => this.message = 'API indisponible. Lancez « npm run api » dans le dossier front.' }); }
@@ -48,5 +53,12 @@ export class AppComponent implements OnInit {
   editDeclaration(): void {
     this.declaration = null;
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  registerUser(): void {
+    this.userService.create({ name: this.userName.trim(), email: this.userEmail.trim(), password: 'ecosignal' }).subscribe({
+      next: user => { this.userMessage = `Bienvenue ${user.name} !`; this.userName = ''; this.userEmail = ''; },
+      error: error => this.userMessage = error.status === 400 ? 'Cette adresse e-mail est déjà utilisée ou invalide.' : 'Inscription impossible.'
+    });
   }
 }
