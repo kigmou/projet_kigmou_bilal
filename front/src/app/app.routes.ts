@@ -5,12 +5,13 @@ import { authGuard } from './auth.guard';
 export const routes: Routes = [
   {
     path: 'register',
-    loadComponent: () => import('./register/register.component').then(({ RegisterComponent }) => RegisterComponent)
+    redirectTo: '',
+    pathMatch: 'full'
   },
   {
     path: 'dashboard',
     canActivate: [authGuard],
     loadChildren: () => import('./dashboard/dashboard.routes').then(({ DASHBOARD_ROUTES }) => DASHBOARD_ROUTES)
   },
-  { path: '**', redirectTo: 'dashboard' }
+  { path: '**', redirectTo: '' }
 ];
