@@ -1,16 +1,18 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { PollutionFormComponent } from './pollution-form/pollution-form.component';
 import { PollutionRecapComponent } from './pollution-recap/pollution-recap.component';
 import { PollutionDeclaration } from './pollution.model';
 import { PollutionService } from './pollution.service';
 import { UserService } from './user.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
-  imports: [PollutionFormComponent, PollutionRecapComponent, DatePipe, FormsModule],
+  imports: [PollutionFormComponent, PollutionRecapComponent, DatePipe, FormsModule, RouterLink, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -18,6 +20,7 @@ import { UserService } from './user.service';
 export class AppComponent implements OnInit {
   private readonly service = inject(PollutionService);
   private readonly userService = inject(UserService);
+  private readonly authService = inject(AuthService);
   declaration: PollutionDeclaration | null = null;
   pollutions: PollutionDeclaration[] = [];
   selected: PollutionDeclaration | null = null;
@@ -57,7 +60,7 @@ export class AppComponent implements OnInit {
 
   registerUser(): void {
     this.userService.create({ name: this.userName.trim(), email: this.userEmail.trim(), password: 'ecosignal' }).subscribe({
-      next: user => { this.userMessage = `Bienvenue ${user.name} !`; this.userName = ''; this.userEmail = ''; },
+      next: user => { this.authService.setProfile({ name: user.name, email: user.email }); this.userMessage = `Bienvenue ${user.name} !`; this.userName = ''; this.userEmail = ''; },
       error: error => this.userMessage = error.status === 400 ? 'Cette adresse e-mail est déjà utilisée ou invalide.' : 'Inscription impossible.'
     });
   }
