@@ -1,4 +1,4 @@
-# TP02 — Déclaration d’une pollution
+# TP04 — API REST de gestion des pollutions
 
 L’application Angular demandée se trouve dans le dossier `front`.
 
@@ -12,6 +12,14 @@ npm start
 
 Puis ouvrir `http://localhost:4200`.
 
+Dans un second terminal, lancer l'API :
+
+```bash
+cd api
+npm install
+npm start
+```
+
 ## Fonctionnalités
 
 - formulaire Angular Reactive Forms ;
@@ -20,4 +28,5 @@ Puis ouvrir `http://localhost:4200`.
 - transmission des données au récapitulatif avec `@Input()` ;
 - affichage sans rechargement ni navigation ;
 - interface responsive et accessible.
-ttt
+- API REST Express/Sequelize/SQLite pour les utilisateurs et les pollutions ;
+- services Angular `PollutionService` et `UserService`.

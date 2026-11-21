@@ -9,9 +9,28 @@
     <span>ÉcoSignal</span>
   </a>
   <span class="header-badge"><span aria-hidden="true"></span> Portail citoyen</span>
+  <a routerLink="/dashboard" class="header-badge">Tableau de bord</a>
 </header>
 
+<router-outlet></router-outlet>
+
 <main id="main-content">
+  <section class="user-bar" aria-labelledby="user-title">
+    <div><p class="eyebrow">Espace citoyen</p><h2 id="user-title">Créer un profil</h2></div>
+    <form (ngSubmit)="registerUser()" #userForm="ngForm">
+      <input name="userName" [(ngModel)]="userName" required placeholder="Votre nom" aria-label="Votre nom">
+      <input name="userEmail" [(ngModel)]="userEmail" required type="email" placeholder="Votre e-mail" aria-label="Votre e-mail">
+      <button type="submit" [disabled]="userForm.invalid">S’inscrire</button>
+    </form>
+    @if (userMessage) { <p role="status">{{ userMessage }}</p> }
+  </section>
+  <section class="list-layout" aria-labelledby="list-title">
+    <div class="section-heading"><div><p class="eyebrow">Suivi citoyen</p><h1 id="list-title">Pollutions signalées</h1></div><span class="type-badge">{{ filtered.length }} résultat(s)</span></div>
+    <div class="filters"><input type="search" placeholder="Rechercher..." [(ngModel)]="search" aria-label="Rechercher une pollution"><select [(ngModel)]="typeFilter" aria-label="Filtrer par type"><option value="">Tous les types</option>@for (type of pollutionTypes; track type) { <option [value]="type">{{ type }}</option> }</select></div>
+    @if (message) { <p role="alert">{{ message }}</p> }
+    <div class="pollution-list">@for (pollution of filtered; track pollution.id) { <article class="pollution-row"><button class="row-main" (click)="showDetail(pollution)"><strong>{{ pollution.title }}</strong><span>{{ pollution.type }} · {{ pollution.location }} · {{ pollution.observationDate | date:'d MMMM y':'':'fr-FR' }}</span></button><button type="button" class="delete" (click)="remove(pollution)">Supprimer</button></article> } @empty { <p>Aucune pollution ne correspond aux filtres.</p> }</div>
+  </section>
+  @if (selected) { <section class="detail-panel"><button type="button" (click)="selected = null">← Retour à la liste</button><app-pollution-recap [declaration]="selected" (edit)="selected = null" /></section> }
   @if (declaration === null) {
     <section class="form-layout" aria-labelledby="page-title">
       <div class="intro-panel">
